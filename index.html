@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>WaitMateNYC</title>
+  <meta name="description" content="WaitMateNYC - The mobile app that helps you beat the lines in NYC.">
+  <link rel="icon" href="splash_lady_liberty.png">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Hamburger menu styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      z-index: 102;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      height: 3px;
+      width: 26px;
+      margin: 4px 0;
+      background: #1d1d1f;
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.7em;
+      position: relative;
+    }
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 62px;
+        left: 0;
+        width: 100vw;
+        flex-direction: column;
+        align-items: flex-start;
+        background: rgba(255,255,255,0.96);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        padding: 2em 1.7em 2em 1.7em;
+        z-index: 101;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .hamburger {
+        display: flex;
+        margin-left: auto;
+      }
+      nav {
+        position: relative;
+      }
+    }
+    @media (min-width: 801px) {
+      .hamburger {
+        display: none;
+      }
+      .nav-links {
+        display: flex !important;
+      }
+    }
+    /* Hamburger active state */
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+    /* Nav link styles */
+    .nav-links a {
+      color: #1d1d1f;
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 1em;
+      transition: color 0.2s;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      border-radius: 8px;
+      width: fit-content;
+    }
+    .nav-links a:hover {
+      color: #1976d2;
+      border-bottom: 2px solid #1976d2;
+      background: #e3eaf7;
+    }
+    .nav-links .social-links {
+      margin-top: 1em;
+      margin-bottom: 0;
+      color: #aaa;
+      font-size: 0.98em;
+    }
+    /* Ensure nav sticks to top and overlays content */
+    nav {
+      background: rgba(255,255,255,0.60);
+      box-shadow: 0 1px 10px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2em 2em;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.32);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+    }
+    .logo img {
+      height: 34px;
+      vertical-align: middle;
+      margin-right: 12px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+      font-size: 1.1em;
+      letter-spacing: 0.01em;
+      color: #1d1d1f;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+      hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('show');
+      });
+      // Close menu if clicking outside
+      document.body.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('show');
+      });
+      navLinks.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <nav>
+    <span class="logo">
+      <img src="splash_lady_liberty.png" alt="WaitMateNYC Logo">
+      WaitMateNYC
+    </span>
+    <button class="hamburger" aria-label="Open menu" aria-haspopup="true" aria-controls="main-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links" id="main-menu">
+      <a href="#features">Features</a>
+      <a href="#download">Download</a>
+      <a href="#contact">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="support.html">Support & FAQ</a>
+      </div>
+    </div>
+  </nav>
+  <header class="hero glass-card">
+    <div class="hero-content">
+      <h1>Beat the lines in NYC.</h1>
+      <p class="subtitle">Track Wait Times. Find Restaurants. Wait Less.</p>
+      <a href="#download" class="cta-btn">Get the App</a>
+    </div>
+  </header>
+  <section id="features" class="glass-card">
+    <h2>Features</h2>
+    <div class="features-list">
+      <div class="feature glass-inner">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/time.png" alt="Wait Times">
+        <h3>Wait Times</h3>
+        <p>Track Wait Times for popular NYC spots.</p>
+      </div>
+      <div class="feature glass-inner">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/map.png" alt="Map">
+        <h3>Smart Maps</h3>
+        <p>Find venues near you and compare wait times instantly.</p>
+      </div>
+      <div class="feature glass-inner">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/appointment-reminders.png" alt="Notify">
+        <h3>Notify</h3>
+        <p>Get a notification when your favorite restaurants are below your preferred wait time.</p>
+      </div>
+    </div>
+  </section>
+  <section id="download" class="download-section glass-card">
+    <h2>Download WaitMateNYC</h2>
+    <div class="download-buttons">
+      <a href="#" class="store-btn apple">App Store</a>
+    </div>
+    <div class="screenshots">
+      <img src="simulator_screenshot_7E489C10-897B-43A8-A689-92E5E292598E.png" alt="Discover Screen" class="glass-inner">
+      <img src="simulator_screenshot_9B341EF5-F785-4F7E-A571-10F29AAB07AB.png" alt="Map Screen" class="glass-inner">
+    </div>
+  </section>
+  <footer id="contact" class="glass-card">
+    <h2>Contact</h2>
+    <p>Questions or feedback? <a href="mailto:support@waitmatenyc.com">Email us</a></p>
+    <p>
+      <a href="privacy.html">Privacy Policy</a> | 
+      <a href="terms.html">Terms of Use</a> | 
+      <a href="support.html">Support & FAQ</a>
+    </p>
+    <div class="social-links">
+      Twitter Instagram Facebook
+    </div>
+    <p class="copyright">&copy; 2025 WaitMateNYC. All rights reserved.</p>
+  </footer>
+</body>
+</html>
